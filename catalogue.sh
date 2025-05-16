@@ -1,8 +1,8 @@
 #Install NodeJS, By default NodeJS 16 is available, We would like to enable 20 version and install list.
-component_name=catalogue
-source common.sh
 
-nodejs
+dnf module disable nodejs -y
+dnf module enable nodejs:20 -y
+dnf install nodejs -y
 
 
 cp catalogue.service /etc/systemd/system/catalogue.service
@@ -20,4 +20,6 @@ npm install
 dnf install mongodb-mongosh -y
 mongosh --host mongodb-dev.vidyapractice.shop </app/db/master-data.js
 
-systemd_setup
+systemctl daemon-reload
+systemctl enable cart
+systemctl start cart
